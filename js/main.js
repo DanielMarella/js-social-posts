@@ -80,14 +80,10 @@ const posts = [
 
 
 
-
-
-console.log(posts)
-
 const container = document.getElementById('container');
-console.log(container);
 
 posts.forEach(user => {
+    
     container.innerHTML +=
     `
 <div class="post">
@@ -121,15 +117,17 @@ posts.forEach(user => {
     </div>
 </div>
     `
-
-
 });
+
+
+
 const likeButton = document.querySelector('a.like-button');
 
-likeButton.addEventListener('click' , function(){
-document.querySelector('a.like-button').classList.add('red');
-
-})
+posts.forEach(user => {
+    likeButton.addEventListener('click' , function(){
+        document.querySelector('a.like-button').classList.toggle('red');
+    })
+});
 
 
 
