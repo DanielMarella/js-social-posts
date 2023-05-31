@@ -12,7 +12,10 @@
 // Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
 
-
+// BONUS
+// Formattare le date in formato italiano (gg/mm/aaaa)
+// Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
+// Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 
 
 
@@ -75,6 +78,10 @@ const posts = [
     }
 ];
 
+
+
+
+
 console.log(posts)
 
 const container = document.getElementById('container');
@@ -113,12 +120,16 @@ posts.forEach(user => {
         </div>
     </div>
 </div>
-
     `
+
+
 });
+const likeButton = document.querySelector('a.like-button');
 
+likeButton.addEventListener('click' , function(){
+document.querySelector('a.like-button').classList.add('red');
 
-
+})
 
 
 
