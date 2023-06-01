@@ -79,7 +79,7 @@ const posts = [
 ];
 
 
-
+const footer = document.getElementsByClassName('post__footer');
 const container = document.getElementById('container');
 
 posts.forEach(user => {
@@ -105,27 +105,36 @@ posts.forEach(user => {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
+                <a class="like-button  js-like-button" href="#" data-postid="${user.id}">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
             </div>
             <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">${user.likes}</b> persone
+                Piace a <b id="like-counter-${user.id}" class="js-likes-counter">${user.likes}</b> persone
             </div>
         </div>
+        </div>
     </div>
-</div>
     `
+    
 });
 
+const  likedPost = [];
 
+const likeButton = document.querySelectorAll('a.like-button.js-like-button');
+const likeCounter = document.querySelectorAll('div.likes__counter>b.js-likes-counter');
 
-const likeButton = document.querySelector('a.like-button');
+console.log(likeButton)
+likeButton.forEach((likeButton, index) => {
+    likeButton.addEventListener('click' , function( event ){
+        event.preventDefault(); //  <-- blocca il comportamento standard
 
-posts.forEach(user => {
-    likeButton.addEventListener('click' , function(){
-        document.querySelector('a.like-button').classList.toggle('red');
+        likedPost.push(parseInt(this.getAttribute('data-postid')));
+
+        likeButton.classList.toggle('like-button--liked');
+        likeCounter[index].innerHTML = parseInt(likeCounter[index].innerHTML) + 1;
+
     })
 });
 
